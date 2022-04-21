@@ -1,17 +1,13 @@
 import {Link} from "react-router-dom"
-import {getAll} from "./BooksAPI.js"
-const Library = ({library, setLibrary}) => {
+/* import {getAll} from "./BooksAPI.js"
+ */const Library = ({library, setLibrary}) => {
 
-    const loadingBooks = async() => {
-        const data = await getAll();
-        setLibrary([...library, data])
-        console.log(library);
-    }
+  
 
     return (
     <div className="list-books">
           <div className="list-books-title">
-          <h1 onClick={loadingBooks}>MyReads</h1>
+          <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
             <div>

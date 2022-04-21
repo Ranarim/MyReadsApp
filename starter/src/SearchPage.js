@@ -1,15 +1,14 @@
-/* import {search} from "./BooksAPI"
- */import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 
-const SearchPage = () => {
-/*  const handleChange = async(e) => {
+const SearchPage = ({library, setLibrary}) => {
+  const handleChange = async(e) => {
    const input = e.target.value
    if (input.length > 0) {
-    const results = await search(input);
-    console.log(results)
-   }
-  } */
+    const results = [];
+    console.log(typeof(results))
+  }
+  } 
 
     return (
         <div className="search-books">
@@ -25,6 +24,7 @@ const SearchPage = () => {
               <input
                 type="text"
                 placeholder="Search by title, author, or ISBN"
+                onChange={handleChange}
               />
               </form>
             </div>
