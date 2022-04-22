@@ -1,37 +1,38 @@
 import {Link} from "react-router-dom"
-/* import {getAll} from "./BooksAPI.js"
- */const Library = ({library, setLibrary}) => {
+import {useEffect, useState} from "react"
+import Shelf from "./Shelf";
 
-  
+
+const Library = ({library}) => {
+  const [ currentlyReading, setCurrentlyReading ] = useState([]);
+  const [ wantToRead, setWantToRead ] = useState([]);
+  const [ read, setRead ] = useState([]);
+
+  useEffect(() => {
+    library.filter(books => books.shelf !== "none").forEach(book => {
+      if (book.shelf === 'currentlyReading') {
+        setCurrentlyReading(currentlyReading => [...currentlyReading, book]);
+    } else if (book.shelf === 'wantToRead') {
+        setWantToRead(wantToRead => [...wantToRead, book]);
+    } else if (book.shelf === 'read') {
+        setRead(read => [...read, book]);
+    } else if (book.shelf === 'none') {
+        return;
+    }
+    })
+  },[library])
 
     return (
     <div className="list-books">
+      {console.log("currentlyReading",currentlyReading,"Read",read,"WantToRead",wantToRead)}
           <div className="list-books-title">
           <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
             <div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Currently Reading</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                  </ol>
-                </div>
-              </div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Want to Read</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                  </ol>
-                </div>
-              </div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Read</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                  </ol>
-                </div>
-              </div>
+              <Shelf title="Want To Read" books={wantToRead}/>
+              <Shelf title="Read" books={read}/>
+              <Shelf title="Currently Reading" books={currentlyReading}/>
             </div>
           </div>
           <div className="open-search">

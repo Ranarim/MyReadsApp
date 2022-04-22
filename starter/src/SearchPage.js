@@ -1,12 +1,12 @@
 import {Link} from "react-router-dom"
-
+/* import {BookCard} from "./BookCard.js"
+ */
 
 const SearchPage = ({library, setLibrary}) => {
   const handleChange = async(e) => {
    const input = e.target.value
    if (input.length > 0) {
-    const results = [];
-    console.log(typeof(results))
+    
   }
   } 
 

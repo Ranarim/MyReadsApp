@@ -1,7 +1,29 @@
-const BookCard = () => {
+import SelectShelf from "./SelectShelf.js"
+
+
+const BookCard = ({book}) => {
 return (
-    <p>Hello</p>
-)
+    <li>
+      <div className="book">
+          {book.imageLinks ? (
+          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail}` }}></div>
+          ) : (
+          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(https://www.kerrylonsdale.com/wp-content/uploads/2015/11/bookcover-placeholder-e1494528547751.png)` }}></div>
+          )}
+            <SelectShelf book={book}/> 
+          {book.title ? (
+            <div className="book-title">{book.title}</div>
+            ) : (
+            <div className="book-title">No Title</div>
+            )}
+          {book.authors ? (
+            <div className="book-authors">{book.authors[0]}</div>
+            ) : (
+            <div className="book-authors">Unknown Author</div>
+            )}
+        </div>
+    </li>
+        );
 }
 
 export default BookCard

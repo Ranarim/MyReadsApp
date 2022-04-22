@@ -8,27 +8,19 @@ import {getAll} from "./BooksAPI.js";
 const App = () => {
 const [library, setLibrary] = useState([])
 
-
 useEffect(() => {
-  const fetchBooks = async() => {
-    const res = await getAll();
-    console.log(res.data)
-}
-fetchBooks()
-}
-,[]
-)
+  getAll().then(res => setLibrary(res))
+  .catch(err => console.log(err))
+},[library.length]);
 
   return (
     <Router>
       <Routes>
-       <Route exact path="/" element={<Library library={library} setLibrary={setLibrary}/>} />
-      
-       <Route path="/search" element={<SearchPage library={library} setLibrary={setLibrary}/>} />
+       <Route exact path="/" element={<Library library={library}/>} />
+       <Route path="/search" element={<SearchPage library={library}/>} />
        </Routes>
     </Router>
   )
 }
 
 export default App;
-
