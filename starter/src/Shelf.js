@@ -1,6 +1,6 @@
 import BookCard from "./BookCard";
 
-const Shelf = ({books, title}) => {
+const Shelf = ({books, title, library}) => {
     
     return (
         <div className="bookshelf">

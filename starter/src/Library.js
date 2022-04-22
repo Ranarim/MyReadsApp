@@ -9,6 +9,9 @@ const Library = ({library}) => {
   const [ read, setRead ] = useState([]);
 
   useEffect(() => {
+    setCurrentlyReading([]);
+    setWantToRead([]);
+    setRead([]);
     library.filter(books => books.shelf !== "none").forEach(book => {
       if (book.shelf === 'currentlyReading') {
         setCurrentlyReading(currentlyReading => [...currentlyReading, book]);
@@ -31,7 +34,7 @@ const Library = ({library}) => {
           <div className="list-books-content">
             <div>
               <Shelf title="Want To Read" books={wantToRead}/>
-              <Shelf title="Read" books={read}/>
+              <Shelf title="Read" books={read} />
               <Shelf title="Currently Reading" books={currentlyReading}/>
             </div>
           </div>

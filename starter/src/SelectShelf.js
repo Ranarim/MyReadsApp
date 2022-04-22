@@ -3,10 +3,9 @@ import {update} from "./BooksAPI"
 
 const SelectShelf = ({book}) => {
 return (
-    <div className="book-shelf-changer">
-        <select defaultValue={`${book.shelf}`} onChange={(event) => {
+        <select defaultValue={`${book.shelf}`} onChange={(e) => {
             // remove book from current shelf and add to the selected shelf
-            update(book, event.target.value);
+            update(book, e.target.value);
             }}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
@@ -14,7 +13,6 @@ return (
                 <option value="read">Read</option>
                 <option value="none">None</option>
         </select>
-    </div>
 )
 
 }

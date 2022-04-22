@@ -11,7 +11,7 @@ const [library, setLibrary] = useState([])
 useEffect(() => {
   getAll().then(res => setLibrary(res))
   .catch(err => console.log(err))
-},[library.length]);
+},[library]);
 
   return (
     <Router>
