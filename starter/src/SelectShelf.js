@@ -1,11 +1,12 @@
 import React from 'react'
 import {update} from "./BooksAPI"
 
-const SelectShelf = ({book}) => {
+const SelectShelf = ({book, updateLibrary}) => {
 return (
         <select defaultValue={`${book.shelf}`} onChange={(e) => {
             // remove book from current shelf and add to the selected shelf
             update(book, e.target.value);
+            updateLibrary();
             }}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>

@@ -8,15 +8,18 @@ import {getAll} from "./BooksAPI.js";
 const App = () => {
 const [library, setLibrary] = useState([])
 
-useEffect(() => {
+const updateLibrary = () => {
   getAll().then(res => setLibrary(res))
   .catch(err => console.log(err))
-},[library]);
+}
+useEffect(() => {
+updateLibrary()
+},[library.length]);
 
   return (
     <Router>
       <Routes>
-       <Route exact path="/" element={<Library library={library}/>} />
+       <Route exact path="/" element={<Library library={library} updateLibrary={updateLibrary}/>} />
        <Route path="/search" element={<SearchPage library={library}/>} />
        </Routes>
     </Router>
