@@ -8,7 +8,7 @@ const Shelf = ({books, title, library, updateLibrary}) => {
         <div className="bookshelf-books">
           <ol className="books-grid">
           {books.map(book => {
-        return (<BookCard book={book} key={book.id} updateLibrary={updateLibrary}/>)
+        return (<BookCard book={book} key={book.id}/>)
         })}
           </ol>
         </div>

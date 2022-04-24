@@ -30,11 +30,11 @@ const Library = ({library, updateLibrary}) => {
           <div className="list-books-title">
           <h1>MyReads</h1>
           </div>
-          <div className="list-books-content">
-            <div>
-              <Shelf title="Want To Read" books={wantToRead} updateLibrary={updateLibrary}/>
-              <Shelf title="Read" books={read} updateLibrary={updateLibrary} />
-              <Shelf title="Currently Reading" books={currentlyReading} updateLibrary={updateLibrary}/>
+          <div className="list-books-content" onChange={updateLibrary}>
+            <div onChange={updateLibrary}>
+              <Shelf title="Want To Read" books={wantToRead}/>
+              <Shelf title="Read" books={read} />
+              <Shelf title="Currently Reading" books={currentlyReading}/>
             </div>
           </div>
           <div className="open-search">
