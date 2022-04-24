@@ -8,24 +8,25 @@ const [proposals, setProposals] = useState([]);
 const [value,setValue] = useState("")
 
 useEffect(()=> {
-  if(value.length > 0) {
-      search(value).then(data => {data.map(item => {
-        const checkItem = library.find(book => book.id === item.id)
-        if (checkItem) {
-          item.shelf = checkItem.shelf
-        } else {
-          item.shelf = "none"
+  if(value.length > 0 && proposals instanceof Array) {
+      search(value).then(data => {
+          data.map(item => {
+          const checkItem = library.find(book => book.id === item.id)
+          if (checkItem) {
+            item.shelf = checkItem.shelf
+          } else {
+            item.shelf = "none"
         }
         return item
       })
     setProposals(data)
     })
-    .catch(error => console.log(error)) 
+   .catch(error => setProposals([]))
   }
   else {
     setProposals([])
   }
-},[value, proposals.length, library])
+},[proposals.length,library,value])
 
 
     return (
@@ -47,11 +48,9 @@ useEffect(()=> {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            { proposals && 
-              proposals.length > 0 && 
-              proposals.map(book => (
-                <BookCard book={book} key={book.id}/>
-              ))}
+            {proposals.length === 0 && value !== "" ? (<p>No Books found</p>) : (<></>) }
+            { proposals && proposals.length > 0 && proposals.map(book => (
+                <BookCard book={book} key={book.id}/> )) }
             </ol>
           </div>
         </div>
