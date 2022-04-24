@@ -21,7 +21,7 @@ return (
             <div className="book-title">No Title</div>
             )}
           {book.authors ? (
-            <div className="book-authors">{book.authors[0]}</div>
+            <div className="book-authors">{book.authors.join(", ")}</div>
             ) : (
             <div className="book-authors">Unknown Author</div>
             )}
