@@ -24,7 +24,7 @@ const Library = ({library,updateLibrary}) => {
         return;
     }
     })
-  },[library, currentlyReading.length, read.length, wantToRead.length])
+  },[library])
 
     return (
     <div className="list-books">

@@ -4,30 +4,31 @@ import { search } from "./../BooksAPI";
 import BookCard from "./BookCard";
 
 const SearchPage = ({library,updateLibrary}) => {
-const [proposals, setProposals] = useState([]);
-const [value,setValue] = useState("")
+  const [proposals, setProposals] = useState([]);
+  const [value,setValue] = useState("")
 
-useEffect(()=> {
-  console.log("now I am rendering the SearchPage");
-  if(value.length > 0 && proposals instanceof Array) {
-      search(value).then(data => {
-          data.map(item => {
-          const checkItem = library.find(book => book.id === item.id)
-          if (checkItem) {
-            item.shelf = checkItem.shelf
-          } else {
-            item.shelf = "none"
-        }
-        return item
+  
+  useEffect(()=> {
+    console.log("now I am rendering the SearchPage");
+    if(value.length > 0 && proposals instanceof Array) {
+        search(value).then(data => {
+            data.map(item => {
+            const checkItem = library.find(book => book.id === item.id)
+            if (checkItem) {
+              item.shelf = checkItem.shelf
+            } else {
+              item.shelf = "none"
+          }
+          return item
+        })
+      setProposals(data)
       })
-    setProposals(data)
-    })
-   .catch(error => setProposals([]))
-  }
-  else {
-    setProposals([])
-  }
-},[value, proposals.length, library])
+     .catch(error => setProposals([]))
+    }
+    else {
+      setProposals([])
+    }
+  },[value, library, proposals.length])
 
 
     return (
