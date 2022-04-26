@@ -3,7 +3,7 @@ import { useEffect, useState} from "react"
 import { search } from "./../BooksAPI";
 import BookCard from "./BookCard";
 
-const SearchPage = ({library, updateLibrary}) => {
+const SearchPage = ({library,updateLibrary}) => {
 const [proposals, setProposals] = useState([]);
 const [value,setValue] = useState("")
 
@@ -31,7 +31,7 @@ useEffect(()=> {
 
 
     return (
-        <div className="search-books" onChange={updateLibrary}>
+        <div className="search-books">
           <div className="search-books-bar">
             <Link
             className="close-search"
@@ -51,7 +51,7 @@ useEffect(()=> {
             <ol className="books-grid">
             {proposals.length === 0 && value !== "" ? (<p>No Books found</p>) : (<></>) }
             { proposals && proposals.length > 0 && proposals.map(book => (
-                <BookCard book={book} key={book.id}/> )) }
+                <BookCard book={book} key={book.id} updateLibrary={updateLibrary}/> )) }
             </ol>
           </div>
         </div>

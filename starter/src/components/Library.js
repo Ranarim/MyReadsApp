@@ -3,7 +3,7 @@ import {useEffect, useState} from "react"
 import Shelf from "./Shelf";
 
 
-const Library = ({library, updateLibrary}) => {
+const Library = ({library,updateLibrary}) => {
   const [ currentlyReading, setCurrentlyReading ] = useState([]);
   const [ wantToRead, setWantToRead ] = useState([]);
   const [ read, setRead ] = useState([]);
@@ -24,22 +24,22 @@ const Library = ({library, updateLibrary}) => {
         return;
     }
     })
-  },[library])
+  },[library, currentlyReading.length, read.length, wantToRead.length])
 
     return (
-    <div className="list-books" onChange={updateLibrary}>
+    <div className="list-books">
           <div className="list-books-title">
           <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
             <div>
-              <Shelf title="Want To Read" books={wantToRead}/>
-              <Shelf title="Read" books={read} />
-              <Shelf title="Currently Reading" books={currentlyReading}/>
+              <Shelf title="Want To Read" books={wantToRead} updateLibrary={updateLibrary} />
+              <Shelf title="Read" books={read} updateLibrary={updateLibrary} />
+              <Shelf title="Currently Reading" books={currentlyReading} updateLibrary={updateLibrary}/>
             </div>
           </div>
           <div className="open-search">
-            <Link to="/search" onClick={updateLibrary}>Add a book</Link>
+            <Link to="/search">Add a book</Link>
           </div>
         </div>
   )
